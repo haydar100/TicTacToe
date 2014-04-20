@@ -14,7 +14,7 @@ namespace TicTacToe
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Visual Studio sucks !");
+            MessageBox.Show("Haydar IV2A");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -25,10 +25,11 @@ namespace TicTacToe
         private void button_click(object sender, EventArgs e)
         {
             var b = (Button) sender;
-            _image = _turn%2 == 1 ? "X" : "O";
+            _image = _turn % 2 == 1 ? "X" : "O"; // The conditional operator (?:) returns one of two values depending on the value of a Boolean expression. Following is the syntax for the conditional operator.
             if (b.Text.Equals(""))
                 b.Text = _image;
             _turn++;
+            
 
             if (CheckForWinner(button1, button2, button3) ||
                 CheckForWinner(button4, button5, button6) ||
@@ -40,13 +41,15 @@ namespace TicTacToe
                 CheckForWinner(button3, button6, button9) || _turn != 9) return;
             MessageBox.Show("Draw!.",
                 "there is no winner!");
-            RemoveText();
+            RemoveText(); // can also call Application.Restart(); but ok
+            
         }
 
 
-        private void RemoveText()
+        private static void RemoveText()
         {
-            button1.Text = "";
+            
+          /*  button1.Text = "";
             button2.Text = "";
             button3.Text = "";
             button4.Text = "";
@@ -54,7 +57,8 @@ namespace TicTacToe
             button6.Text = "";
             button7.Text = "";
             button8.Text = "";
-            button9.Text = "";
+            button9.Text = "";*/
+            Application.Restart();
         }
 
 
@@ -64,12 +68,14 @@ namespace TicTacToe
         {
            if (b1.Text.Equals(b2.Text) &&  b1.Text.Equals(b3.Text) && !b1.Text.Equals(""))
             {
-                MessageBox.Show("Congratulations player " + _image + " won", "there is a winner!"); RemoveText();
+                MessageBox.Show("Congratulations player " + _image + " won", "there is a winner!"); 
+               Application.Restart();
                 return true;
             }
             return false;
         }
 
+        
 
         
     }
