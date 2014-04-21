@@ -12,7 +12,8 @@ namespace TicTacToeConsole
         static void Main(string[] args)
         {
             Start();
-      
+            PlayField();
+
         }
 
        static void Start()
@@ -23,6 +24,15 @@ namespace TicTacToeConsole
            Console.ReadLine();
            Console.Clear();
 
+        }
+
+       static void PlayField()
+        {
+            for (int i = 0; i < 7; i=+3)
+            {
+                            Console.WriteLine(_playField[i] + "|" + _playField[i + 1] + "|" + _playField[i + 2]);
+
+            }
         }
 
         static void playerData(String player)

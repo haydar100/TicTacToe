@@ -7,9 +7,19 @@ namespace TicTacToe
     {
         private int _turn;
         private string _image = "";
+
+        private enum Status
+        {
+            Won,
+            Draw
+        };
+
         public Form1()
         {
             InitializeComponent();
+
+ 
+          
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -29,21 +39,25 @@ namespace TicTacToe
             if (b.Text.Equals(""))
                 b.Text = _image;
             _turn++;
-            
+
+
 
             if (CheckForWinner(button1, button2, button3) ||
-                CheckForWinner(button4, button5, button6) ||
-                CheckForWinner(button7, button8, button9) ||
-                CheckForWinner(button1, button5, button9) ||
-                CheckForWinner(button3, button5, button7) ||
-                CheckForWinner(button1, button4, button7) ||
-                CheckForWinner(button2, button5, button8) ||
-                CheckForWinner(button3, button6, button9) || _turn != 9) return;
-            MessageBox.Show("Draw!.",
+           CheckForWinner(button4, button5, button6) ||
+           CheckForWinner(button7, button8, button9) ||
+           CheckForWinner(button1, button5, button9) ||
+           CheckForWinner(button3, button5, button7) ||
+           CheckForWinner(button1, button4, button7) ||
+           CheckForWinner(button2, button5, button8) ||
+           CheckForWinner(button3, button6, button9) || _turn != 9) return;
+            MessageBox.Show(Status.Draw.ToString(),
                 "there is no winner!");
-            RemoveText(); // can also call Application.Restart(); but ok
-            
+            RemoveText(); // can also call Application.Restart(); but oks
+
+
         }
+
+   
 
 
         private static void RemoveText()
@@ -66,13 +80,10 @@ namespace TicTacToe
 
         private bool CheckForWinner(Button b1, Button b2, Button b3) 
         {
-           if (b1.Text.Equals(b2.Text) &&  b1.Text.Equals(b3.Text) && !b1.Text.Equals(""))
-            {
-                MessageBox.Show("Congratulations player " + _image + " won", "there is a winner!"); 
-               Application.Restart();
-                return true;
-            }
-            return false;
+            if (!b1.Text.Equals(b2.Text) || !b1.Text.Equals(b3.Text) || b1.Text.Equals("")) return false;
+            MessageBox.Show("Congratulations player " + _image + " " + Status.Won + " "   ,"there is a winner!"); 
+            Application.Restart();
+            return true;
         }
 
         
