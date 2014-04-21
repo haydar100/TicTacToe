@@ -28,16 +28,12 @@ namespace TicTacToeConsole
 
        static void PlayField()
         {
-            for (int i = 0; i < 7; i=+3)
-            {
-                            Console.WriteLine(_playField[i] + "|" + _playField[i + 1] + "|" + _playField[i + 2]);
-
-            }
+            
         }
 
         static void playerData(String player)
         {
-            Console.WriteLine("Player : " + player);
+        
         }
     }
 }
