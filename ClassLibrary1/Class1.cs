@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using TicTacToe;
 
-namespace TicTacToeEngine
+namespace TicTacToe
 {
     public enum TicTacToeStatus
     {
@@ -21,7 +24,11 @@ namespace TicTacToeEngine
 
         public TicTacToeEngine()
         {
-
+            Buttons = new List<string>(); 
+            for (int i = 0; i < 9; i++)
+            {
+                Buttons.Add("");
+            }
         }
 
 
@@ -47,10 +54,11 @@ namespace TicTacToeEngine
 
 public class TicTacToeCLI
 {
+    private TicTacToeEngine TicTacToeGame { set; get; }
 
     public TicTacToeCLI()
     {
-        // create engine,
+        TicTacToeGame = new TicTacToeEngine();
     }
 
     static void Start()
