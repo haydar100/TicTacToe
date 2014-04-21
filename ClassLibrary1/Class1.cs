@@ -16,7 +16,7 @@ namespace TicTacToe
 
     public class TicTacToeEngine
     {
-        private String plaatje = "";
+        private String _image = "";
         private int _beurt = 0;
 
         public TicTacToeStatus Status { get; set; }
@@ -34,8 +34,8 @@ namespace TicTacToe
 
         public bool ChooseCell(int button)
         {
-            plaatje = Status == TicTacToeStatus.PlayerOPlays ? "O" : "X";
-
+            _image = Status == TicTacToeStatus.PlayerOPlays ? "O" : "X";
+            return false;
         }
 
         public bool DetermineWinner(string s1, string s2, string s3)
@@ -52,11 +52,11 @@ namespace TicTacToe
 
 }
 
-public class TicTacToeCLI
+public class TicTacToeCli
 {
     private TicTacToeEngine TicTacToeGame { set; get; }
 
-    public TicTacToeCLI()
+    public TicTacToeCli()
     {
         TicTacToeGame = new TicTacToeEngine();
     }
