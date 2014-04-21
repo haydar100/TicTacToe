@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
+using System.Resources;
 using TicTacToe;
 
 namespace TicTacToe
@@ -22,6 +18,12 @@ namespace TicTacToe
         public TicTacToeStatus Status { get; set; }
         public List<string> Buttons { get; set; }
 
+        public string Image
+        {
+            get { return _image; }
+            set { _image = value; }
+        }
+
         public TicTacToeEngine()
         {
             Buttons = new List<string>(); 
@@ -34,23 +36,44 @@ namespace TicTacToe
 
         public bool ChooseCell(int button)
         {
-            _image = Status == TicTacToeStatus.PlayerOPlays ? "O" : "X";
-            return false;
+            Image = Status == TicTacToeStatus.PlayerOPlays ? "O" : "X";
+            // determine if the button has no text 
+            if (Buttons[button] == "")
+            {
+                Buttons[button] = _image;
+                Status = (Status == TicTacToeStatus.PlayerOPlays
+                    ? TicTacToeStatus.PlayerXPlays
+                    : TicTacToeStatus.PlayerOPlays);
+                _beurt++; // +1 each time on the counter
+            }
+            else {return false;}
+            // determine winner but how ? maybe a boolean to return the winner and if the _beurt is on 9 just return a draw status ?
+
+
+            return true; // placeholder until method is done
+
         }
 
         public bool DetermineWinner(string s1, string s2, string s3)
         {
-            return s1 == s2 && s1 == s3 && !s1.Equals("");
+            return s1 == s2 && s1 == s3 && !s1.Equals(""); // on the GUI i had buttons as parameters, switched them to string
         }
 
         public void EmptyButtons()
         {
-            
+            for (int i = 0; i < Buttons.Count; i++) // count the buttons, setText empty string.
+            {
+                Buttons[i] = "";
+            }
+            _beurt = 0; // also reset the counter 
         }
         
     }
 
 }
+
+
+// need to code something that will start the game as the console version or as the GUI version
 
 public class TicTacToeCli
 {
@@ -72,12 +95,12 @@ public class TicTacToeCli
     }
 
 
-    public static void drawBoard()
+    public static void DrawBoard()
     {
         
     }
 
-    public static void playerData()
+    public static void PlayerData()
     {
         
     }
